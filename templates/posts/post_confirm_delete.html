@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <div class="container">
+    <h1> SEGURO DESEAS BORRAR ESTO?¡ </h1>
+    <form method="POST">
+    {% csrf_token %} 
+    <button class="btn btn-primary" type="submit">{{ view_type|title  }}</button>
+    </form>
+
+</div>
+
+{% endblock content %}
