@@ -17,12 +17,10 @@
                         <hr>
 
                         <p>
-                            <spam><i class="fas fa-thumbs-up ml-2"> </i> {{ object.get_like_count }}  </spam>
-                            <spam><i class="fas fa-eye ml-2"> </i> {{ object.get_view_count }}  </spam>
-                            <spam><i class="fas fa-comment ml-2"> </i> {{ object.get_comment_count }} </spam>
-                           
+                            <spam><i class="fa-solid fa-heart ml-2"></i> {{ object.get_like_count }}  </spam>
+                            <spam><i class="fa-solid fa-eye ml-2"></i> </i> {{ object.get_view_count }}  </spam>
+                            <spam><i class="fa-solid fa-comment ml-2"></i> {{ object.get_comment_count }} </spam>
                         </p>
-                       
                         <p class="card-text">
                             {{ object.publish_date|timesince }} ago
                           

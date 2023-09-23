@@ -3,7 +3,33 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, PostView, Like, Comment
 from .forms import CommentForm, PostForm
+from .models import Libro, Resena
+from .forms import ResenaForm
 
+def libro_detalle(request, libro_id):
+    libro = Libro.objects.get(pk=libro_id)
+    reseñas = Resena.objects.filter(libro=libro)
+    return render(request, 'libro_detalle.html', {'libro': libro, 'reseñas': reseñas})
+
+
+def libro_detalle(request, libro_id):
+    libro = Libro.objects.get(pk=libro_id)
+    reseñas = Resena.objects.filter(libro=libro)
+    return render(request, 'libro_detalle.html', {'libro': libro, 'reseñas': reseñas})
+
+def agregar_resena(request, libro_id):
+    libro = Libro.objects.get(pk=libro_id)
+    if request.method == 'POST':
+        form = ResenaForm(request.POST)
+        if form.is_valid():
+            resena = form.save(commit=False)
+            resena.usuario = request.user
+            resena.libro = libro
+            resena.save()
+            return redirect('libro_detalle', libro_id=libro_id)
+    else:
+        form = ResenaForm()
+    return render(request, 'agregar_resena.html', {'form': form, 'libro': libro})
 
 # Create your views here.
 

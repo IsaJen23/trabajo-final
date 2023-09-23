@@ -20,7 +20,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-
 from posts.views import PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, like
 
 
@@ -32,9 +31,8 @@ urlpatterns = [
    path('<slug>/', PostDetailView.as_view(), name='detail'),
    path('<slug>/update/', PostUpdateView.as_view(), name='update'),
    path('<slug>/delete/', PostDeleteView.as_view(), name='delete'),
-   path('like/<slug>*', like, name='like')
-   #('agregar_favorito/<int:libro_id>/', views.agregar_favorito, name='agregar_favorito'),
-   #path('favoritos/', views.lista_de_favoritos, name='lista_de_favoritos'),
+   path('like/<slug>*', like, name='like'),
+
 ]
 
 

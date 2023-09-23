@@ -28,7 +28,7 @@ class Post(models.Model):
     
     def get_like_url(self):
         return reverse("like", kwargs={'slug': self.slug})
-    
+     
     @property
     def comments(self):
         return self.comment_set.all()
@@ -73,6 +73,15 @@ class Like(models.Model):
     def _str_(self):
         return self.user.username
     
+class Libro(models.Model):
+    titulo = models.CharField(max_length=200)
+    autor = models.CharField(max_length=100)
+    descripcion = models.TextField()
 
-    
+class Resena(models.Model):
+    libro = models.ForeignKey(Libro, on_delete=models.CASCADE, related_name='reseñas')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    calificacion = models.IntegerField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
+    comentario = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
     

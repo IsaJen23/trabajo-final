@@ -1,5 +1,11 @@
 from django import forms
 from .models import Post, Comment
+from .models import Resena
+
+class ResenaForm(forms.ModelForm):
+    class Meta:
+        model = Resena
+        fields = ['calificacion', 'comentario']
 
 class PostForm( forms.ModelForm):
     class Meta:
@@ -7,11 +13,6 @@ class PostForm( forms.ModelForm):
         fields = ('__all__')
         
 class CommentForm(forms.ModelForm):
-     content = forms.CharField(required=True, widget=forms.Textarea(attrs={
-        'rows':4
-        
-    }))
-    
-     class Meta:
+    class Meta:
         model = Comment
         fields = ('content',)
